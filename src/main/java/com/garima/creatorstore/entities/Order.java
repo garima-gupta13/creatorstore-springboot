@@ -1,9 +1,14 @@
 package com.garima.creatorstore.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -11,6 +16,10 @@ import java.util.List;
 
 @Entity
 @Table(name="orders")
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Order {
 
     @Id
@@ -30,8 +39,8 @@ public class Order {
     @Column(name="total_price", nullable = false)
     private BigDecimal totalPrice;
 
-
-    @OneToMany(mappedBy = "order") // mapped by order field - created in OrderItem class
+    @JsonManagedReference
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL) // mapped by order field - created in OrderItem class
     private List<OrderItem> orderItems;
 
     @Column(name= "created_at")

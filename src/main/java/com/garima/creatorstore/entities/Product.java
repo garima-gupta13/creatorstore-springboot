@@ -27,6 +27,7 @@ public class Product {
     @Column(nullable =false)
     private String name;
 
+    private String description;
     private String category;
 
     @NotNull(message = "Price is required")

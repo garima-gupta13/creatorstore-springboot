@@ -1,6 +1,7 @@
 package com.garima.creatorstore.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
@@ -30,6 +31,7 @@ public class OrderItem {
     //TODO: relations == i.e 1 to many
     // we have tables and we have to connect them , means make relations
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name= "order_id", nullable= false)
     private Order order;
